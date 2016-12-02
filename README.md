@@ -1,11 +1,12 @@
-# PC分页,完美支持ie8+
+# PC分页,完美支持ie8+,2KB
 
 下面就是见证奇迹的时刻
 
 ![pageabc.gif](http://upload-images.jianshu.io/upload_images/2887236-bc38a362c17acc6f.gif?imageMogr2/auto-orient/strip)
 
-# 配置详情
+# dome地址 [https://github.com/cleartime/pageSize/blob/master/dome/index.html](https://github.com/cleartime/pageSize/blob/master/dome/index.html)		
 
+# 配置详情
 
 		var config = {
 			el: document.getElementById("page"), //绑定到你的dom
@@ -20,10 +21,7 @@
 			},
 		};
 		new Page(config);                        //启动
+				
 		
-		
-# 更多详情请移步		
-		
-		
-#### 欢迎follow/star我的github:https://github.com/cleartime;
-#### 我的博客:http://cleartime.leanapp.cn/;
+#### 欢迎follow/star我的github:[https://github.com/cleartime](https://github.com/cleartime);
+#### 我的博客:[http://cleartime.leanapp.cn/](http://cleartime.leanapp.cn/);
