@@ -7,9 +7,12 @@ var PAGE_COUNT = 2;      //服务端返回总页数
 
 function Page(data){
 	this.el = data.el || document.body;
-	this.callback = null;
-	CURRENT_PAGE_NUM  = this.currentPagenum = data.currentPagenum;
-	PAGE_COUNT = data.pageCount;
+	this.pageA = !data.pageA;
+	this.pageB = !data.pageB;
+	this.pageC = !data.pageC;
+	if(data.sizeCount&&data.pagesize){
+		PAGE_COUNT = Math.ceil(data.sizeCount/data.pagesize);
+	}
 	if(!!data.callback){
 		this.callback = data.callback;
 	}
@@ -30,16 +33,18 @@ Page.prototype.init = function(){
  * dom注入
  */
 Page.prototype.setDom = function () {
-	var ohtml = '';
-		ohtml +='<ul id="page-ul">';
-		ohtml +='<li><a href = "" class = "page-prev'+this.dis(0)+'" >上一页</a></li>';
+	var A = '',B = '',C = '',D = '',E = '',F = '',G = '',H = '';
+		A +='<ul id="page-ul" style = "width:'+((87*((this.pageA?2:0)+(this.pageB?2:0))+PAGE_COUNT*35)+((PAGE_COUNT+(this.pageA?2:0)+(this.pageB?2:0))*12)+(this.pageC?200:0))+'px">';
+		B +='<li><a href = "" class = "page-head'+this.dis('head')+'" >首页</a></li>';
+		C +='<li><a href = "" class = "page-prev'+this.dis('prev')+'" >上一页</a></li>';
 	for(var i = 1;i <= PAGE_COUNT;i++){
-		ohtml +='<li><a href = ""  class = "page-li'+this.active(i)+'" >'+i+'</a></li>';
+		D +='<li><a href = ""  class = "page-li'+this.active(i)+'" >'+i+'</a></li>';
 	}
-		ohtml +='<li><a href = ""  class = "page-next'+this.dis(1)+'" >下一页</a></li>';
-		ohtml +='</ul>';
-
-	this.el.innerHTML = ohtml;
+		E +='<li><a href = ""  class = "page-next'+this.dis('next')+'" >下一页</a></li>';
+		F +='<li><a href = "" class = "page-foot'+this.dis('foot')+'" >尾页</a></li>';
+		G +='<li id = "page-submit" >跳到<input type="number" value = '+CURRENT_PAGE_NUM+' min="1" max='+PAGE_COUNT+' />页<a href = "" class="page-submit">确定</a></li>';
+		H +='</ul>';
+	this.el.innerHTML = A+(this.pageA?B:'')+(this.pageB?C:'')+D+(this.pageB?E:'')+(this.pageA?F:'')+(this.pageC?G:'')+H;
 }
 
 
@@ -48,8 +53,8 @@ Page.prototype.setDom = function () {
  * @param  {String} num  0上一页1下一页
  * @return {String} 添加的class             
  */
-Page.prototype.dis = function (num) {
-	if(!num){
+Page.prototype.dis = function (str) {
+	if(str == 'prev' || str =='head'){
 		return CURRENT_PAGE_NUM > 1?'':' dis';
 	}
 	return CURRENT_PAGE_NUM < PAGE_COUNT?'':' dis';
@@ -70,6 +75,7 @@ Page.prototype.active = function (num) {
 Page.prototype.chage = function(){
 	var self = this;
 	var ul = document.getElementById('page-ul');
+	var input = document.querySelectorAll('#page-submit input');
 	ul.addEventListener('click',function(e){
 		e.preventDefault();
 		var e = e || window.event;
@@ -86,11 +92,22 @@ Page.prototype.chage = function(){
 				case 'page-next':
 				CURRENT_PAGE_NUM ++;
 				break;
+				case 'page-head':
+				CURRENT_PAGE_NUM = 1;
+				break;
+				case 'page-foot':
+				CURRENT_PAGE_NUM = PAGE_COUNT;
+				break;
+				case 'page-submit':
+				if(input[0].value<=PAGE_COUNT&&input[0].value>=1){
+					CURRENT_PAGE_NUM = input[0].value;
+				}
+				break;
 				default:
 				CURRENT_PAGE_NUM = target.innerText;
-			}
-			self.currentPagenum = CURRENT_PAGE_NUM;
-			self.callback();
+			}			
+			self.callback(CURRENT_PAGE_NUM);
+			self.init();
 		}
 	})
 }
