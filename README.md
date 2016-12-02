@@ -4,7 +4,9 @@
 
 ![pageabc.gif](http://upload-images.jianshu.io/upload_images/2887236-bc38a362c17acc6f.gif?imageMogr2/auto-orient/strip)
 
-# dome地址 [https://github.com/cleartime/pageSize/blob/master/dome/index.html](https://github.com/cleartime/pageSize/blob/master/dome/index.html)		
+# dome地址 
+
+[https://github.com/cleartime/pageSize/blob/master/dome/index.html](https://github.com/cleartime/pageSize/blob/master/dome/index.html)		
 
 # 配置详情
 
