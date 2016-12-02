@@ -22,5 +22,8 @@
 		new Page(config);                        //启动
 		
 		
-## 欢迎follow/star我的github:https://github.com/cleartime;
-## 我的博客:http://cleartime.leanapp.cn/;
+# 更多详情请移步		
+		
+		
+#### 欢迎follow/star我的github:https://github.com/cleartime;
+#### 我的博客:http://cleartime.leanapp.cn/;

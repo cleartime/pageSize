@@ -19,10 +19,5 @@ module.exports = {
 		new webpack.DefinePlugin({
 			__VERSION__: JSON.stringify(version)
 		}),
-		// new webpack.optimize.UglifyJsPlugin({
-		// 	compress: {
-		// 		warnings: false
-		// 	}
-		// }),
 	]
 };
