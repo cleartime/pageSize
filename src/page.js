@@ -10,6 +10,7 @@ function Page(data){
 	this.pageA = !data.pageA;
 	this.pageB = !data.pageB;
 	this.pageC = !data.pageC;
+	PAGE_COUNT = data.pageCount;
 	if(data.sizeCount&&data.pagesize){
 		PAGE_COUNT = Math.ceil(data.sizeCount/data.pagesize);
 	}
