@@ -102,7 +102,25 @@ return /******/ (function(modules) { // webpackBootstrap
 			G +='<li id = "page-submit" >跳到<input type="number" value = '+CURRENT_PAGE_NUM+' min="1" max='+PAGE_COUNT+' />页<a href = "" class="page-submit">确定</a></li>';
 			H +='</ul>';
 		this.el.innerHTML = A+(this.pageA?B:'')+(this.pageB?C:'')+D+(this.pageB?E:'')+(this.pageA?F:'')+(this.pageC?G:'')+H;
+		this.createStyle();
 	}
+
+
+
+	/**
+	 * 创建插件所需样式
+	 */
+	Page.prototype.createStyle = () => {
+	    var style = document.getElementById('page-style');
+	    if (style) {
+	        return false; //已经创建了样式
+	    }
+	    style = document.createElement('style');
+	    style.id = 'page-style';
+	    style.type = 'text/css';
+	    style.innerHTML = '#page-ul{width:433px;text-align:center;margin:30px auto}#page-ul li a{display:inline-block;float:left;font-size:14px;border:1px solid #f7f7f7;width:35px;height:35px;color:#757575;text-align:center;line-height:35px;margin-right:10px}#page-ul .page-head,#page-ul .page-foot,#page-ul .page-next,#page-ul .page-prev{width:87px;background:#fff;color:#757575}#page-ul .page-head.dis,#page-ul .page-foot.dis,#page-ul .page-next.dis,#page-ul .page-prev.dis{background:#e5e4e2;color:#fff}#page-ul li a.active{border:1px solid #b18247;color:#b18247}#page-ul #page-submit{height:35px;line-height:35px;float:left;width:200px;position:relative}#page-ul #page-submit input{margin:0 5px;border:1px solid #f7f7f7}#page-ul #page-submit a{margin-left:10px;margin-right:0;position:absolute}';
+	    this.el.appendChild(style);
+	};
 
 
 	/**
